@@ -6,9 +6,9 @@ import { useEffect, useState } from 'react';
 export default function App() {
   const [text, setText] = useState('');
   const [loading, setLoading] = useState(false);
-  const [image, setImage] = useState<Image>();
+  const [image, setImage] = useState<Pick<Image, 'src'>>();
 
-  function handleTextRecognition(text: string, image: Image) {
+  function handleTextRecognition(text: string, image: Pick<Image, 'src'>) {
     setText(text);
     setImage(image);
   }
@@ -47,11 +47,12 @@ export default function App() {
           )}
 
           {image && (
-            <img
-              className='mt-10 rounded-lg pb-20 ... opacity-0 animate-enter'
-              src={image.src}
-              title={image.title}
-            />
+            <div className='mb-20'>
+              <img
+                className='mt-10 rounded-lg ... opacity-0 animate-enter'
+                src={image.src}
+              />
+            </div>
           )}
         </Container>
       </main>
